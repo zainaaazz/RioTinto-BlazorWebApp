@@ -37,7 +37,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           app_location: './RioTintoApp/Client/wwwroot'  # Path to the built app containing index.html
+          action: 'upload'  # Specify the action (e.g., 'upload', 'clean', etc.)
           skip_app_build: true
-
-      #    app_location: './RioTintoApp.Client/build/wwwroot' # Path to the built app containing index.html
-      #    skip_app_build: true
