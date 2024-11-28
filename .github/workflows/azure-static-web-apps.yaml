@@ -30,6 +30,11 @@ jobs:
       # Build the Blazor WebAssembly application
       - name: Build the app
         run: dotnet publish ./RioTintoApp/Client/RioTintoApp.Client.csproj -c Release -o build
+        
+- name: List contents of build/wwwroot
+  run: ls -R ./RioTintoApp/Client/build/wwwroot
+
+
 
       # Deploy to Azure Static Web Apps
       - name: Deploy to Azure
