@@ -29,7 +29,7 @@ jobs:
         run: dotnet publish ./RioTintoApp/Client/RioTintoApp.Client.csproj -c Release -o ./RioTintoApp/Client/build
 
       - name: Debug: List contents of build directory
-        run: ls -R ./RioTintoApp/Client/build
+        run: ls -R ./RioTintoApp/Client/build/wwwroot
 
       - name: Debug: Check for default files
         run: |
