@@ -12,7 +12,7 @@ on:
 jobs:
   build_and_deploy_job:
     runs-on: ubuntu-latest
-    name: Build and Deploy Hosted Blazor WebAssembly App
+    name: Build and Deploy Blazor WebAssembly App
     steps:
       # Checkout the repository
       - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '6.0.x' # Update this if you're using a different .NET version
 
       # Restore dependencies
       - name: Restore dependencies
@@ -31,7 +31,7 @@ jobs:
       - name: Build the app
         run: dotnet publish ./RioTintoApp/Client/RioTintoApp.Client.csproj -c Release -o ./RioTintoApp/Client/build
 
-      # Debugging step: List the contents of the build directory
+        # Debugging step: List the contents of the build directory
       - name: Debug: List contents of build/wwwroot
         run: ls -R ./RioTintoApp/Client/build/wwwroot
 
@@ -41,4 +41,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           app_location: './RioTintoApp/Client/build/wwwroot'
+          
+          action: 'upload'  # Specify the action (e.g., 'upload', 'clean', etc.)
+      
           skip_app_build: true
