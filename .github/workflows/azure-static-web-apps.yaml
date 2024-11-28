@@ -14,28 +14,37 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Blazor WebAssembly App
     steps:
-      # Checkout the repository
-      - uses: actions/checkout@v3
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      # Setup .NET environment
+      # Step 2: Setup .NET environment
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x' # Update this if you're using a different .NET version
+          dotnet-version: '6.0.x'
 
-      # Restore dependencies
+      # Step 3: Restore dependencies
       - name: Restore dependencies
         run: dotnet restore ./RioTintoApp/Client/RioTintoApp.Client.csproj
 
-      # Build the Blazor WebAssembly application
+      # Step 4: Build the Blazor WebAssembly application
       - name: Build the app
         run: dotnet publish ./RioTintoApp/Client/RioTintoApp.Client.csproj -c Release -o ./RioTintoApp/Client/build
 
-      # Debugging step: List the contents of the build directory
+      # Step 5: Debugging - List build directory
       - name: Debug: List contents of build/wwwroot
         run: ls -R ./RioTintoApp/Client/build/wwwroot
 
-      # Deploy to Azure Static Web Apps
+      # Step 6: Debugging - Check for default files
+      - name: Debug: Check for default files
+        run: |
+          if [ ! -f ./RioTintoApp/Client/build/wwwroot/index.html ]; then
+            echo "Error: index.html not found in build/wwwroot"
+            exit 1
+          fi
+
+      # Step 7: Deploy to Azure Static Web Apps
       - name: Deploy to Azure
         uses: Azure/static-web-apps-deploy@v1
         with:
