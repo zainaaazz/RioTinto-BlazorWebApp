@@ -31,7 +31,7 @@ jobs:
       - name: Build the app
         run: dotnet publish ./RioTintoApp/Client/RioTintoApp.Client.csproj -c Release -o ./RioTintoApp/Client/build
 
-        # Debugging step: List the contents of the build directory
+      # Debugging step: List the contents of the build directory
       - name: Debug: List contents of build/wwwroot
         run: ls -R ./RioTintoApp/Client/build/wwwroot
 
@@ -41,7 +41,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           app_location: './RioTintoApp/Client/build/wwwroot'
-          
-          action: 'upload'  # Specify the action (e.g., 'upload', 'clean', etc.)
-      
           skip_app_build: true
