@@ -32,7 +32,7 @@ jobs:
         run: dotnet publish ./RioTintoApp/Client/RioTintoApp.Client.csproj -c Release -o ./RioTintoApp/Client/build
 
       # Debugging step: List the contents of the build directory
-      - name: List contents of build/wwwroot
+      - name: Debug: List contents of build/wwwroot
         run: ls -R ./RioTintoApp/Client/build/wwwroot
 
       # Deploy to Azure Static Web Apps
