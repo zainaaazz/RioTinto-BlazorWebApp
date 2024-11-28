@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x' # Matches your project's .NET version (6.0)
+          dotnet-version: '6.0.x' # Update this based on your .NET version
 
       # Restore dependencies
       - name: Restore dependencies
@@ -38,3 +38,4 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           app_location: 'output/wwwroot'
           skip_app_build: true
+          deployment_action: upload # Explicitly specify the deployment action
